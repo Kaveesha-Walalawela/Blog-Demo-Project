@@ -9,10 +9,10 @@ import java.time.Instant;
 
 @Entity
 @Table
-public class PostBlog {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     @NotBlank
     @Column
     private String title;
@@ -28,12 +28,12 @@ public class PostBlog {
     @NotBlank
     private String username;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = Long.valueOf(id);
     }
 
     public String getTitle() {

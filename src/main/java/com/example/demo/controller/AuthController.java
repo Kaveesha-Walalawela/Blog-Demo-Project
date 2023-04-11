@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.example.demo.model.ERole;
@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+//import static com.sun.jndi.ldap.LdapClient.encodePassword;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -88,7 +90,13 @@ public class AuthController {
 //                signUpRequest.getRoles(),signUpRequest.getPhoneNo());
         User user = new User();
         user.setUsername(signUpRequest.getUsername());
-        user.setRoles(signUpRequest.getRoles());
+        user.setEmail(signUpRequest.getEmail());
+        ERole.setRoles(signUpRequest.getRoles());
+        user.setPhoneNo(signUpRequest.getPhoneNo());
+        encoder.encode(signUpRequest.getPassword());
+//        UserDetailsImpl registerRequest;
+//        user.setPassword(encodePassword(signUpRequest.getPassword());
+
 
 //        if (strRoles == null) {
 //            //TODO: ENUM Validation
@@ -118,8 +126,26 @@ public class AuthController {
 
         return ResponseEntity.ok(new JwtResponse(
                 user.getId(),
+//                user.getPassword(),
                 user.getUsername(),
                 user.getEmail(),
+//                user.getRoles(),
                 user.getPhoneNo()));
+    }
+
+//    private String encodePassword(String password) {
+//        return null;
+//    }
+
+    /*Use this for Post Service*/
+    public Optional<User> getCurrentUser() {
+        Object principal =  SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof User) {
+            return userRepository.findByUsername(((User) principal).getUsername());
+        }
+        //Throw exception
+        .orElseThrow(() -> new UserNotFoundException("User not found in repository"));
+    } else {
+        throw new UserNotFoundException("User not authenticated");
     }
 }

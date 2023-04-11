@@ -2,9 +2,14 @@ package com.example.demo.request;
 
 import com.example.demo.model.ERole;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 @Data
+@Getter
+@Setter
 public class SignupRequest {
 
     private String username;
@@ -12,6 +17,35 @@ public class SignupRequest {
     private List<ERole> roles;
     private String password;
     private String phoneNo;
+
+    public List<ERole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<ERole> roles) {
+        this.roles = roles;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    @NotBlank
 //    @Size(min = 3, max = 20)

@@ -21,7 +21,7 @@
 	</properties>
 
 	<dependencies>
-<!--		to add @column-->
+		<!--		to add @column-->
 <!--		A JPA implementation: 1.1-->
 		<dependency>
 			<groupId>org.hibernate</groupId>

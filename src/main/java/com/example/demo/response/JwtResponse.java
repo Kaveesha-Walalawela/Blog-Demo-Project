@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 public class JwtResponse {
 
+//    private String password;
     private String token;
     private String type = "Bearer";
     private String id;
@@ -37,6 +38,17 @@ public class JwtResponse {
         this.username = username;
         this.email = email;
         this.phoneNo = phoneNo;
+    }
+
+//    public JwtResponse(String id, String password, String username, String email, String phoneNo) {
+//        this.token = token;
+//        this.id = id;
+//        this.username = username;
+//        this.email = email;
+//        this.password = password;
+//        this.roles = roles;
+//        this.phoneNo = phoneNo;
+
     }
 
 //    public String getAccessToken() {
@@ -83,4 +95,4 @@ public class JwtResponse {
 //        return roles;
 //    }
 
-}
+
